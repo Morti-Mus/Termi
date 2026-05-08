@@ -6,23 +6,12 @@ import (
 
 func main() {
 	picker()
-
+	charMovment()
 }
 
 func picker() {
 	charOne, charTwo := char()
-	var inpTest string
-	fmt.Scanln(&inpTest)
-	sum := 0
-	for i := 0; i < 10; i++ {
-		if inpTest == "w" {
-			move := charMovment(1)
 
-			charOne.location.xAxis = move
-			fmt.Println(charOne.location.xAxis)
-		}
-		sum += i
-	}
 	// bool1 := true
 	// bool2 := false
 
@@ -84,8 +73,54 @@ func char() (charInfo, charInfo) {
 
 }
 
-func charMovment(i int) int {
+// connect this func to picker() so that the char you use get used in this func instead of pre determined as of right now charOne
+
+func charMovment() {
+	charOne, _ := char()
+	var moveW int = charMovmentForward(1)
+	var moveS int = charMovmentBackward(1)
+	var inpTest string
+	var stuff bool
+
+	fmt.Println("Pleas input w for North")
+	fmt.Println("Pleas input s for South")
+	fmt.Println("Pleas input a for West")
+	fmt.Println("Pleas input d for East")
+	sum := 0
+
+	for i := 0; i < 10; i++ {
+
+		fmt.Scanln(&inpTest)
+
+		if inpTest == "w" {
+			charOne.location.yAxis = moveW
+			fmt.Println(charOne.location.xAxis, charOne.location.yAxis)
+		}
+		if inpTest == "s" {
+			charOne.location.yAxis = moveS
+			fmt.Println(charOne.location.xAxis, charOne.location.yAxis)
+		}
+		if inpTest == "a" {
+			charOne.location.xAxis = moveS
+			fmt.Println(charOne.location.xAxis, charOne.location.yAxis)
+		}
+		if inpTest == "d" {
+			charOne.location.xAxis = moveW
+			fmt.Println(charOne.location.xAxis, charOne.location.yAxis)
+		}
+		sum += i
+		// if stuff = (false){
+		// 	break
+		// }
+	}
+}
+
+func charMovmentForward(i int) int {
 	i++
+	return i
+}
+func charMovmentBackward(i int) int {
+	i--
 	return i
 }
 
