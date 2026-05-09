@@ -44,8 +44,8 @@ func char() (charInfo, charInfo) {
 			faith:        5,
 		},
 		location: location{
-			xAxis: 0,
-			yAxis: 0,
+			xAxis: 1,
+			yAxis: 1,
 		},
 	}
 	char2 := charInfo{
@@ -77,41 +77,44 @@ func char() (charInfo, charInfo) {
 
 func charMovment() {
 	charOne, _ := char()
-	var moveW int = charMovmentForward(1)
-	var moveS int = charMovmentBackward(1)
+	var moveW int = charMovmentForward(0)
+	var moveS int = charMovmentBackward(0)
 	var inpTest string
-	var stuff bool
+	// var stuff bool
 
 	fmt.Println("Pleas input w for North")
 	fmt.Println("Pleas input s for South")
 	fmt.Println("Pleas input a for West")
 	fmt.Println("Pleas input d for East")
+	fmt.Println("if you want it to stop write stop")
 	sum := 0
+	if inpTest == "char1" {
+		for i := 0; i < 100; i++ {
 
-	for i := 0; i < 10; i++ {
+			fmt.Scanln(&inpTest)
 
-		fmt.Scanln(&inpTest)
+			if inpTest == "w" {
+				charOne.location.yAxis += moveW
+				fmt.Println(charOne.location.xAxis, charOne.location.yAxis)
+			}
+			if inpTest == "s" {
+				charOne.location.yAxis += moveS
+				fmt.Println(charOne.location.xAxis, charOne.location.yAxis)
+			}
+			if inpTest == "a" {
+				charOne.location.xAxis += moveS
+				fmt.Println(charOne.location.xAxis, charOne.location.yAxis)
+			}
+			if inpTest == "d" {
+				charOne.location.xAxis += moveW
+				fmt.Println(charOne.location.xAxis, charOne.location.yAxis)
+			}
+			sum += i
+			if inpTest == "stop" {
+				break
+			}
 
-		if inpTest == "w" {
-			charOne.location.yAxis = moveW
-			fmt.Println(charOne.location.xAxis, charOne.location.yAxis)
 		}
-		if inpTest == "s" {
-			charOne.location.yAxis = moveS
-			fmt.Println(charOne.location.xAxis, charOne.location.yAxis)
-		}
-		if inpTest == "a" {
-			charOne.location.xAxis = moveS
-			fmt.Println(charOne.location.xAxis, charOne.location.yAxis)
-		}
-		if inpTest == "d" {
-			charOne.location.xAxis = moveW
-			fmt.Println(charOne.location.xAxis, charOne.location.yAxis)
-		}
-		sum += i
-		// if stuff = (false){
-		// 	break
-		// }
 	}
 }
 
