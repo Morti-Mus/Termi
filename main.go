@@ -5,6 +5,7 @@ import (
 )
 
 func main() {
+	scanLocation()
 	picker()
 	charMovment()
 }
@@ -80,7 +81,7 @@ func charMovment() {
 	var moveW int = charMovmentForward(1)
 	var moveS int = charMovmentBackward(1)
 	var inpTest string
-	var stuff bool
+	// var stuff bool
 
 	fmt.Println("Pleas input w for North")
 	fmt.Println("Pleas input s for South")
@@ -115,6 +116,25 @@ func charMovment() {
 	}
 }
 
+func scanLocation() {
+	scan := staticObjects()
+
+	if scan < 
+	fmt.Println(scan.xAxis)
+}
+
+func staticObjects() staticObjectInfo {
+	rock := staticObjectInfo{
+		name:        "Rock",
+		discription: "has been untuched for many years, moss is starting to grow.",
+		staticObjectlocation: staticObjectlocation{
+			xAxis: 20,
+			yAxis: 15,
+		},
+	}
+	return rock
+}
+
 func charMovmentForward(i int) int {
 	i++
 	return i
@@ -144,6 +164,17 @@ type charStats struct {
 }
 
 type location struct {
+	xAxis int
+	yAxis int
+}
+
+type staticObjectInfo struct {
+	staticObjectlocation
+	name        string
+	discription string
+}
+
+type staticObjectlocation struct {
 	xAxis int
 	yAxis int
 }
