@@ -5,12 +5,13 @@ import (
 )
 
 func main() {
+	scanLocation()
 	picker()
 	charMovment()
 }
 
 func picker() {
-	charOne, charTwo := char()
+	charOne, charTwo := playerChar()
 
 	// bool1 := true
 	// bool2 := false
@@ -28,7 +29,7 @@ func picker() {
 	}
 }
 
-func char() (charInfo, charInfo) {
+func playerChar() (charInfo, charInfo) {
 	char1 := charInfo{
 		name:     "John",
 		lastName: "Doe",
@@ -70,13 +71,12 @@ func char() (charInfo, charInfo) {
 	}
 
 	return char1, char2
-
 }
 
 // connect this func to picker() so that the char you use get used in this func instead of pre determined as of right now charOne
 
 func charMovment() {
-	charOne, _ := char()
+	charOne, _ := playerChar()
 	var moveW int = charMovmentForward(0)
 	var moveS int = charMovmentBackward(0)
 	var inpTest string
@@ -88,35 +88,55 @@ func charMovment() {
 	fmt.Println("Pleas input d for East")
 	fmt.Println("if you want it to stop write stop")
 	sum := 0
-	if inpTest == "char1" {
-		for i := 0; i < 100; i++ {
+	fmt.Scanln(&inpTest)
+	// if inpTest == "char1" {
+	for i := 0; i < 100; i++ {
 
-			fmt.Scanln(&inpTest)
-
-			if inpTest == "w" {
-				charOne.location.yAxis += moveW
-				fmt.Println(charOne.location.xAxis, charOne.location.yAxis)
-			}
-			if inpTest == "s" {
-				charOne.location.yAxis += moveS
-				fmt.Println(charOne.location.xAxis, charOne.location.yAxis)
-			}
-			if inpTest == "a" {
-				charOne.location.xAxis += moveS
-				fmt.Println(charOne.location.xAxis, charOne.location.yAxis)
-			}
-			if inpTest == "d" {
-				charOne.location.xAxis += moveW
-				fmt.Println(charOne.location.xAxis, charOne.location.yAxis)
-			}
-			sum += i
-			if inpTest == "stop" {
-				break
-			}
-
+		if inpTest == "w" {
+			charOne.location.yAxis += moveW
+			fmt.Println(charOne.location.xAxis, charOne.location.yAxis)
 		}
+		if inpTest == "s" {
+			charOne.location.yAxis += moveS
+			fmt.Println(charOne.location.xAxis, charOne.location.yAxis)
+		}
+		if inpTest == "a" {
+			charOne.location.xAxis += moveS
+			fmt.Println(charOne.location.xAxis, charOne.location.yAxis)
+		}
+		if inpTest == "d" {
+			charOne.location.xAxis += moveW
+			fmt.Println(charOne.location.xAxis, charOne.location.yAxis)
+		}
+		sum += i
+		if inpTest == "stop" {
+			break
+		}
+
 	}
+	// }
 }
+
+
+func scanLocation() {
+	scan := staticObjects()
+
+	if scan < 
+	fmt.Println(scan.xAxis)
+}
+
+func staticObjects() staticObjectInfo {
+	rock := staticObjectInfo{
+		name:        "Rock",
+		discription: "has been untuched for many years, moss is starting to grow.",
+		staticObjectlocation: staticObjectlocation{
+			xAxis: 20,
+			yAxis: 15,
+		},
+	}
+	return rock
+}
+
 
 func charMovmentForward(i int) int {
 	i++
@@ -147,6 +167,16 @@ type charStats struct {
 }
 
 type location struct {
+	xAxis int
+	yAxis int
+}
+type staticObjectInfo struct {
+	staticObjectlocation
+	name        string
+	discription string
+}
+
+type staticObjectlocation struct {
 	xAxis int
 	yAxis int
 }
