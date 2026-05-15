@@ -4,15 +4,14 @@ import (
 	"fmt"
 )
 
-var house = GameObject{
-	name: ,
-}
+var house = GameObject{}
+
 func main() {
 	CreateStaticObjects()
-	// staticObjects()
-	// fmt.Println()
+	// // staticObjects()
+	// // fmt.Println()
 
-	scanLocation()
+	// scanLocation()
 	picker()
 	charMovment()
 }
@@ -36,14 +35,14 @@ func picker() {
 	}
 }
 
-func playerChar() (CharInfo, CharInfo) {
-	char1 := CharInfo{
+func playerChar() (Char, Char) {
+	char1 := Char{
 		name:     "John",
 		lastName: "Doe",
 		age:      30,
 		wheight:  180,
 		length:   75,
-		CharStats: CharStats{
+		Stats: Stats{
 			health:       100,
 			mana:         50,
 			strength:     10,
@@ -56,14 +55,14 @@ func playerChar() (CharInfo, CharInfo) {
 			yAxis: 1,
 		},
 	}
-	char2 := CharInfo{
+	char2 := Char{
 
 		name:     "Jane",
 		lastName: "Doel",
 		age:      25,
 		wheight:  165,
 		length:   60,
-		CharStats: CharStats{
+		Stats: Stats{
 			health:       80,
 			mana:         70,
 			strength:     8,
@@ -93,31 +92,36 @@ func charMovment() {
 	fmt.Println("Pleas input s for South")
 	fmt.Println("Pleas input a for West")
 	fmt.Println("Pleas input d for East")
+	fmt.Println("if you want to scan for any locations or objects write scan")
 	fmt.Println("if you want it to stop write stop")
-
+	// add error handeling to this code.
 	// if inpTest == "char1" {
 	for {
 		fmt.Scanln(&inpTest)
 
 		if inpTest == "w" {
 			charOne.Location.yAxis += moveW
-			fmt.Println(charOne.Location.xAxis, charOne.Location.yAxis)
+			fmt.Println(charOne.Location.xAxis, "x", charOne.Location.yAxis, "y")
 			continue
 		}
 		if inpTest == "s" {
 			charOne.Location.yAxis += moveS
-			fmt.Println(charOne.Location.xAxis, charOne.Location.yAxis)
+			fmt.Println(charOne.Location.xAxis, "x", charOne.Location.yAxis, "y")
 			continue
 		}
 		if inpTest == "a" {
 			charOne.Location.xAxis += moveS
-			fmt.Println(charOne.Location.xAxis, charOne.Location.yAxis)
+			fmt.Println(charOne.Location.xAxis, "x", charOne.Location.yAxis, "y")
 			continue
 		}
 		if inpTest == "d" {
 			charOne.Location.xAxis += moveW
-			fmt.Println(charOne.Location.xAxis, charOne.Location.yAxis)
+			fmt.Println(charOne.Location.xAxis, "x", charOne.Location.yAxis, "y")
 			continue
+		}
+
+		if inpTest == "scan" {
+			scanLocation()
 		}
 
 		if inpTest == "stop" {
@@ -129,35 +133,48 @@ func charMovment() {
 }
 
 func scanLocation() {
-	singelton := CreateStaticObjects()
+	var objectArray []GameObject = CreateStaticObjects()
 	charOne, _ := playerChar()
 
-	if charOne.Location.xAxis+2 >= singelton.xAxis && charOne.Location.xAxis-2 <= singelton.xAxis {
-		fmt.Println(singelton.name, "\n", singelton.discription)
-	} else if condition {
-		
+	if charOne.Location.xAxis+2 >= objectArray[0].xAxis && charOne.Location.xAxis-2 <= objectArray[0].xAxis { // fixa if logicen med greater eller smaller then det kommer va mek
+		fmt.Println("\n", objectArray[0].name, objectArray[0].discription)
+	} else {
+		fmt.Printf("you see something in the distance ... go closer to investigate! %vXaxis %vYaxis", objectArray[0].xAxis, objectArray[0].yAxis)
+	}
+	if charOne.Location.xAxis+2 >= objectArray[1].xAxis && charOne.Location.xAxis-2 <= objectArray[1].xAxis {
+
+	} else {
+		fmt.Printf("you see something in the distance ... go closer to investigate! %vXaxis %vYaxis", objectArray[1].xAxis, objectArray[1].yAxis)
 	}
 }
 
+func CreateStaticObjects() []GameObject {
+	rockObject := NewStaticObjects("rock", "The stone looks aged. \n the sun has bleached the surface. \n you can se a small streak of gold in crack. \n maybe this can be harvested...", Location{xAxis: 15, yAxis: 20})
+	treeObject := NewStaticObjects("tree", "The tree stand tall. \n you can see the leaves russtle in the wind. \n at the bottom you can se that some one has etched in some cordinateds \n xAxis 40 yAxis 50", Location{xAxis: 10, yAxis: 20})
+	housObject := NewStaticObjects("Red Tavern", "The House has been standing for many years \n you can hear music and laughter coming from the windows \n take drink with the patrons", Location{xAxis: 45, yAxis: 30})
+	snakeOilSalesMan := NewStaticObjects("Jimmy sketch", "You see a man with a table and a sign \n on the sign it says \n Jimmys sketchy stuff \n he seems untrust worthy ...", Location{xAxis: 25, yAxis: 25})
+	objectArray := [...]GameObject{rockObject, treeObject, housObject, snakeOilSalesMan}
 
-func CreateStaticObjects() StaticObjectInfo {
-	rockObejct := NewStaticObjects("rock", "the stone looks aged. \n the sun has bleached the surface. \n you can se a small streak of gold in crack. \n maybe this can be harvested...", StaticObjectlocation{xAxis: 15, yAxis: 20})
-	treeObject := NewStaticObjects("tree", "stuff", StaticObjectlocation{xAxis: 10, yAxis: 20})
-
-	fmt.Println(treeObject)
-	fmt.Println(rockObejct)
-
-	return rockObejct
+	return objectArray[:]
 }
 
-func NewStaticObjects(name, discription string, stats StaticObjectlocation) StaticObjectInfo {
-	basicstaticObejctArc := StaticObjectInfo{
-		name:                 name,
-		discription:          discription,
-		StaticObjectlocation: stats,
+func NewStaticObjects(name, discription string, stats Location) GameObject {
+	basicstaticObejctArc := GameObject{
+		name:        name,
+		discription: discription,
+		Location:    stats,
 	}
 
 	return basicstaticObejctArc
+}
+
+func ObjectToCharinteract() {
+	var test []GameObject = CreateStaticObjects()
+	var charOne, _ Char = playerChar()
+	fmt.Println(test[3])
+	fmt.Println(charOne)
+
+	// här vill jag koppla ihop char och snakesalesman så att dom gör något eller ändrar något
 }
 
 func charMovmentForward(i int) int {
