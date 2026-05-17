@@ -115,71 +115,13 @@ func charMovment() {
 			continue
 		}
 		if inpTest == "d" {
-			charOne.Location.xAxis += moveW
-			fmt.Println(charOne.Location.xAxis, "x", charOne.Location.yAxis, "y")
-			continue
+			charOne.location.xAxis = moveW
+			fmt.Println(charOne.location.xAxis, charOne.location.yAxis)
 		}
-
-		if inpTest == "scan" {
-			scanLocation()
-		}
-
-		if inpTest == "talk" {
-			ObjectToCharinteract(charOne)
-		}
-
-		if inpTest == "stop" {
-			break
-		}
-
-	}
-	// }
-}
-
-func scanLocation() {
-	var objectArray []GameObject = CreateStaticObjects()
-	charOne, _ := playerChar()
-
-	if charOne.Location.xAxis+2 >= objectArray[0].xAxis && charOne.Location.xAxis-2 <= objectArray[0].xAxis { // fixa if logicen med greater eller smaller then det kommer va mek
-		fmt.Println("\n", objectArray[0].name, objectArray[0].discription)
-	} else {
-		fmt.Printf("you see something in the distance ... go closer to investigate! %vXaxis %vYaxis", objectArray[0].xAxis, objectArray[0].yAxis)
-	}
-	if charOne.Location.xAxis+2 >= objectArray[1].xAxis && charOne.Location.xAxis-2 <= objectArray[1].xAxis {
-
-	} else {
-		fmt.Printf("you see something in the distance ... go closer to investigate! %vXaxis %vYaxis", objectArray[1].xAxis, objectArray[1].yAxis)
-	}
-}
-
-func CreateStaticObjects() []GameObject {
-	rockObject := NewStaticObjects("rock", "The stone looks aged. \n the sun has bleached the surface. \n you can se a small streak of gold in crack. \n maybe this can be harvested...", "", Location{xAxis: 15, yAxis: 20})
-	treeObject := NewStaticObjects("tree", "The tree stand tall. \n you can see the leaves russtle in the wind. \n at the bottom you can se that some one has etched in some cordinateds \n xAxis 40 yAxis 50", "", Location{xAxis: 10, yAxis: 20})
-	housObject := NewStaticObjects("Red Tavern", "The House has been standing for many years \n you can hear music and laughter coming from the windows \n take drink with the patrons", "", Location{xAxis: 45, yAxis: 30})
-	snakeOilSalesMan := NewStaticObjects("Jimmy sketch", "You see a man with a table and a sign \n on the sign it says \n Jimmys sketchy stuff \n he seems untrust worthy ...", "", Location{xAxis: 4, yAxis: 4})
-	objectArray := [...]GameObject{rockObject, treeObject, housObject, snakeOilSalesMan}
-
-	return objectArray[:]
-}
-
-func NewStaticObjects(name, discription, interaction string, stats Location) GameObject {
-	basicstaticObejctArc := GameObject{
-		name:        name,
-		discription: discription,
-		Location:    stats,
-		interaction: interaction,
-	}
-
-	return basicstaticObejctArc
-}
-
-func ObjectToCharinteract(charOne Char) {
-	var GameObject []GameObject = CreateStaticObjects()
-	testOutput := "Test"
-	fmt.Println("tester")
-	fmt.Println(GameObject[3].yAxis)
-	if charOne.Location.xAxis == GameObject[3].xAxis && charOne.Location.yAxis == GameObject[3].yAxis {
-		fmt.Println(testOutput)
+		sum += i
+		// if stuff = (false){
+		// 	break
+		// }
 	}
 }
 
@@ -215,14 +157,3 @@ type Location struct {
 	xAxis int
 	yAxis int
 }
-type GameObject struct {
-	Location
-	name        string
-	discription string
-	interaction string
-}
-
-// type StaticObjectlocation struct {
-// 	xAxis int
-// 	yAxis int
-// }
