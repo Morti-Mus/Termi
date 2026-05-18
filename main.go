@@ -27,9 +27,9 @@ func picker() {
 	fmt.Scanln(&input)
 
 	if input == "1" {
-		fmt.Printf("You picked: %v, %s\n", charOne.age, charOne.name)
+		fmt.Printf("You picked: %v, %s\n", charOne.Age, charOne.Name)
 	} else if input == "2" {
-		fmt.Printf("You picked: %s, %s\n", charTwo.lastName, charTwo.name)
+		fmt.Printf("You picked: %s, %s\n", charTwo.LastName, charTwo.Name)
 	} else {
 		fmt.Println("Invalid input.")
 	}
@@ -37,42 +37,42 @@ func picker() {
 
 func playerChar() (Char, Char) {
 	char1 := Char{
-		name:     "John",
-		lastName: "Doe",
-		age:      30,
-		wheight:  180,
-		length:   75,
+		Name:     "John",
+		LastName: "Doe",
+		Age:      30,
+		Wheight:  180,
+		Length:   75,
 		Stats: Stats{
-			health:       100,
-			mana:         50,
-			strength:     10,
-			agility:      8,
-			intelligence: 7,
-			faith:        5,
+			Health:       100,
+			Mana:         50,
+			Strength:     10,
+			Agility:      8,
+			Intelligence: 7,
+			Faith:        5,
 		},
 		Location: Location{
-			xAxis: 1,
-			yAxis: 1,
+			XAxis: 1,
+			YAxis: 1,
 		},
 	}
 	char2 := Char{
 
-		name:     "Jane",
-		lastName: "Doel",
-		age:      25,
-		wheight:  165,
-		length:   60,
+		Name:     "Jane",
+		LastName: "Doel",
+		Age:      25,
+		Wheight:  165,
+		Length:   60,
 		Stats: Stats{
-			health:       80,
-			mana:         70,
-			strength:     8,
-			agility:      10,
-			intelligence: 9,
-			faith:        6,
+			Health:       80,
+			Mana:         70,
+			Strength:     8,
+			Agility:      10,
+			Intelligence: 9,
+			Faith:        6,
 		},
 		Location: Location{
-			xAxis: 1,
-			yAxis: 1,
+			XAxis: 1,
+			YAxis: 1,
 		},
 	}
 
@@ -100,23 +100,23 @@ func charMovment() {
 		fmt.Scanln(&inpTest)
 
 		if inpTest == "w" {
-			charOne.Location.yAxis += moveW
-			fmt.Println(charOne.Location.xAxis, "x", charOne.Location.yAxis, "y")
+			charOne.Location.YAxis += moveW
+			fmt.Println(charOne.Location.XAxis, "x", charOne.Location.YAxis, "y")
 			continue
 		}
 		if inpTest == "s" {
-			charOne.Location.yAxis += moveS
-			fmt.Println(charOne.Location.xAxis, "x", charOne.Location.yAxis, "y")
+			charOne.Location.YAxis += moveS
+			fmt.Println(charOne.Location.XAxis, "x", charOne.Location.YAxis, "y")
 			continue
 		}
 		if inpTest == "a" {
-			charOne.Location.xAxis += moveS
-			fmt.Println(charOne.Location.xAxis, "x", charOne.Location.yAxis, "y")
+			charOne.Location.XAxis += moveS
+			fmt.Println(charOne.Location.XAxis, "x", charOne.Location.YAxis, "y")
 			continue
 		}
 		if inpTest == "d" {
-			charOne.Location.xAxis += moveW
-			fmt.Println(charOne.Location.xAxis, "x", charOne.Location.yAxis, "y")
+			charOne.Location.XAxis += moveW
+			fmt.Println(charOne.Location.XAxis, "x", charOne.Location.YAxis, "y")
 			continue
 		}
 
@@ -140,34 +140,34 @@ func scanLocation() {
 	var objectArray []GameObject = CreateStaticObjects()
 	charOne, _ := playerChar()
 
-	if charOne.Location.xAxis+2 >= objectArray[0].xAxis && charOne.Location.xAxis-2 <= objectArray[0].xAxis { // fixa if logicen med greater eller smaller then det kommer va mek
-		fmt.Println("\n", objectArray[0].name, objectArray[0].discription)
+	if charOne.Location.XAxis+2 >= objectArray[0].XAxis && charOne.Location.XAxis-2 <= objectArray[0].XAxis { // fixa if logicen med greater eller smaller then det kommer va mek
+		fmt.Println("\n", objectArray[0].Name, objectArray[0].Discription)
 	} else {
-		fmt.Printf("you see something in the distance ... go closer to investigate! %vXaxis %vYaxis", objectArray[0].xAxis, objectArray[0].yAxis)
+		fmt.Printf("you see something in the distance ... go closer to investigate! %vXaxis %vYaxis", objectArray[0].XAxis, objectArray[0].YAxis)
 	}
-	if charOne.Location.xAxis+2 >= objectArray[1].xAxis && charOne.Location.xAxis-2 <= objectArray[1].xAxis {
+	if charOne.Location.XAxis+2 >= objectArray[1].XAxis && charOne.Location.XAxis-2 <= objectArray[1].XAxis {
 
 	} else {
-		fmt.Printf("you see something in the distance ... go closer to investigate! %vXaxis %vYaxis", objectArray[1].xAxis, objectArray[1].yAxis)
+		fmt.Printf("you see something in the distance ... go closer to investigate! %vXaxis %vYaxis", objectArray[1].XAxis, objectArray[1].YAxis)
 	}
 }
 
 func CreateStaticObjects() []GameObject {
-	rockObject := NewStaticObjects("rock", "The stone looks aged. \n the sun has bleached the surface. \n you can se a small streak of gold in crack. \n maybe this can be harvested...", "", Location{xAxis: 15, yAxis: 20})
-	treeObject := NewStaticObjects("tree", "The tree stand tall. \n you can see the leaves russtle in the wind. \n at the bottom you can se that some one has etched in some cordinateds \n xAxis 40 yAxis 50", "", Location{xAxis: 10, yAxis: 20})
-	housObject := NewStaticObjects("Red Tavern", "The House has been standing for many years \n you can hear music and laughter coming from the windows \n take drink with the patrons", "", Location{xAxis: 45, yAxis: 30})
-	snakeOilSalesMan := NewStaticObjects("Jimmy sketch", "You see a man with a table and a sign \n on the sign it says \n Jimmys sketchy stuff \n he seems untrust worthy ...", "", Location{xAxis: 4, yAxis: 4})
+	rockObject := NewStaticObjects("rock", "The stone looks aged. \n the sun has bleached the surface. \n you can se a small streak of gold in crack. \n maybe this can be harvested...", "", Location{XAxis: 15, YAxis: 20})
+	treeObject := NewStaticObjects("tree", "The tree stand tall. \n you can see the leaves russtle in the wind. \n at the bottom you can se that some one has etched in some cordinateds \n XAxis 40 YAxis 50", "", Location{XAxis: 10, YAxis: 20})
+	housObject := NewStaticObjects("Red Tavern", "The House has been standing for many years \n you can hear music and laughter coming from the windows \n take drink with the patrons", "", Location{XAxis: 45, YAxis: 30})
+	snakeOilSalesMan := NewStaticObjects("Jimmy sketch", "You see a man with a table and a sign \n on the sign it says \n Jimmys sketchy stuff \n he seems untrust worthy ...", "", Location{XAxis: 4, YAxis: 4})
 	objectArray := [...]GameObject{rockObject, treeObject, housObject, snakeOilSalesMan}
 
 	return objectArray[:]
 }
 
-func NewStaticObjects(name, discription, interaction string, stats Location) GameObject {
+func NewStaticObjects(Name, Discription, Interaction string, stats Location) GameObject {
 	basicstaticObejctArc := GameObject{
-		name:        name,
-		discription: discription,
+		Name:        Name,
+		Discription: Discription,
 		Location:    stats,
-		interaction: interaction,
+		Interaction: Interaction,
 	}
 
 	return basicstaticObejctArc
@@ -177,8 +177,8 @@ func ObjectToCharinteract(charOne Char) {
 	var GameObject []GameObject = CreateStaticObjects()
 	testOutput := "Test"
 	fmt.Println("tester")
-	fmt.Println(GameObject[3].yAxis)
-	if charOne.Location.xAxis == GameObject[3].xAxis && charOne.Location.yAxis == GameObject[3].yAxis {
+	fmt.Println(GameObject[3].YAxis)
+	if charOne.Location.XAxis == GameObject[3].XAxis && charOne.Location.YAxis == GameObject[3].YAxis {
 		fmt.Println(testOutput)
 	}
 }
@@ -192,37 +192,37 @@ func charMovmentBackward(i int) int {
 	return i
 }
 
-type Char struct {
-	Stats
-	Location
-	name     string
-	lastName string
-	age      int
-	wheight  int
-	length   int
-}
+// type Char struct {
+// 	Stats
+// 	Location
+// 	Name     string
+// 	LastName string
+// 	Age      int
+// 	Wheight  int
+// 	Length   int
+// }
 
-type Stats struct {
-	health       int
-	mana         int
-	strength     int
-	agility      int
-	intelligence int
-	faith        int
-}
+// type Stats struct {
+// 	Health       int
+// 	Mana         int
+// 	Strength     int
+// 	Agility      int
+// 	Intelligence int
+// 	Faith        int
+// }
 
-type Location struct {
-	xAxis int
-	yAxis int
-}
-type GameObject struct {
-	Location
-	name        string
-	discription string
-	interaction string
-}
+// type Location struct {
+// 	XAxis int
+// 	YAxis int
+// }
+// type GameObject struct {
+// 	Location
+// 	Name        string
+// 	Discription string
+// 	Interaction string
+// }
 
 // type StaticObjectlocation struct {
-// 	xAxis int
-// 	yAxis int
+// 	XAxis int
+// 	YAxis int
 // }

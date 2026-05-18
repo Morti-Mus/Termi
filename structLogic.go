@@ -1,0 +1,31 @@
+package main
+
+type Char struct {
+	Stats
+	Location
+	Name     string
+	LastName string
+	Age      int
+	Wheight  int
+	Length   int
+}
+
+type Stats struct {
+	Health       int
+	Mana         int
+	Strength     int
+	Agility      int
+	Intelligence int
+	Faith        int
+}
+
+type Location struct {
+	XAxis int
+	YAxis int
+}
+type GameObject struct {
+	Location
+	Name        string
+	Discription string
+	Interaction string
+}
