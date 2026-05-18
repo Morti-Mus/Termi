@@ -162,12 +162,13 @@ func CreateStaticObjects() []GameObject {
 	return objectArray[:]
 }
 
-func NewStaticObjects(Name, Discription, Interaction string, stats Location) GameObject {
+func NewStaticObjects(Name, Discription, Interaction string, Location Location, Mana Stats) GameObject {
 	basicstaticObejctArc := GameObject{
 		Name:        Name,
 		Discription: Discription,
-		Location:    stats,
+		Location:    Location,
 		Interaction: Interaction,
+		Stats:       Mana,
 	}
 
 	return basicstaticObejctArc

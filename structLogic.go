@@ -25,6 +25,7 @@ type Location struct {
 }
 type GameObject struct {
 	Location
+	Stats
 	Name        string
 	Discription string
 	Interaction string
