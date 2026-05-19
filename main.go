@@ -201,6 +201,10 @@ func CreateStaticObjects() []GameObject {
 	return objectArray[:]
 }
 
+func CreateStaticItemObject() map[itemObject]itemObject { // detta måste gå att göra på något bättre sätt en tidigare
+	testItem := itemObject{Name: }
+}
+
 func NewStaticObjects(Name, Discription, Interaction string, Location Location, Health Stats) GameObject {
 	basicstaticObejctArc := GameObject{
 		Name:        Name,
