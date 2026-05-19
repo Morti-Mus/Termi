@@ -140,12 +140,20 @@ func scanLocation() {
 	var objectArray []GameObject = CreateStaticObjects()
 	charOne, _ := playerChar()
 
-	if charOne.Location.XAxis+2 >= objectArray[0].XAxis && charOne.Location.XAxis-2 <= objectArray[0].XAxis { // fixa if logicen med greater eller smaller then det kommer va mek
+	if charOne.Location.XAxis+2 >= objectArray[0].XAxis &&
+		charOne.Location.XAxis-2 <= objectArray[0].XAxis &&
+		charOne.Location.YAxis+2 >= objectArray[0].YAxis &&
+		charOne.Location.YAxis-2 <= objectArray[0].YAxis {
+
 		fmt.Println("\n", objectArray[0].Name, objectArray[0].Discription)
+
 	} else {
 		fmt.Printf("you see something in the distance ... go closer to investigate! %vXaxis %vYaxis", objectArray[0].XAxis, objectArray[0].YAxis)
 	}
-	if charOne.Location.XAxis+2 >= objectArray[1].XAxis && charOne.Location.XAxis-2 <= objectArray[1].XAxis {
+	if charOne.Location.XAxis+2 >= objectArray[1].XAxis &&
+		charOne.Location.XAxis-2 <= objectArray[1].XAxis &&
+		charOne.Location.YAxis+2 >= objectArray[1].YAxis &&
+		charOne.Location.YAxis-2 <= objectArray[1].YAxis {
 
 	} else {
 		fmt.Printf("you see something in the distance ... go closer to investigate! %vXaxis %vYaxis", objectArray[1].XAxis, objectArray[1].YAxis)
@@ -153,22 +161,39 @@ func scanLocation() {
 }
 
 func CreateStaticObjects() []GameObject {
-	rockObject := NewStaticObjects("rock", "The stone looks aged. \n the sun has bleached the surface. \n you can se a small streak of gold in crack. \n maybe this can be harvested...", "", Location{XAxis: 15, YAxis: 20})
-	treeObject := NewStaticObjects("tree", "The tree stand tall. \n you can see the leaves russtle in the wind. \n at the bottom you can se that some one has etched in some cordinateds \n XAxis 40 YAxis 50", "", Location{XAxis: 10, YAxis: 20})
-	housObject := NewStaticObjects("Red Tavern", "The House has been standing for many years \n you can hear music and laughter coming from the windows \n take drink with the patrons", "", Location{XAxis: 45, YAxis: 30})
-	snakeOilSalesMan := NewStaticObjects("Jimmy sketch", "You see a man with a table and a sign \n on the sign it says \n Jimmys sketchy stuff \n he seems untrust worthy ...", "", Location{XAxis: 4, YAxis: 4})
+	rockObject := NewStaticObjects("rock",
+		"The stone looks aged. \n the sun has bleached the surface. \n you can se a small streak of gold in crack. \n maybe this can be harvested...",
+		"",
+		Location{XAxis: 15, YAxis: 20},
+		Stats{Health: 5})
+	treeObject := NewStaticObjects("tree",
+		"The tree stand tall. \n you can see the leaves russtle in the wind. \n at the bottom you can se that some one has etched in some cordinateds \n XAxis 40 YAxis 50",
+		"",
+		Location{XAxis: 10, YAxis: 20},
+		Stats{Health: 5})
+	housObject := NewStaticObjects("Red Tavern",
+		"The House has been standing for many years \n you can hear music and laughter coming from the windows \n take drink with the patrons",
+		"",
+		Location{XAxis: 45, YAxis: 30},
+		Stats{Health: 5})
+	snakeOilSalesMan := NewStaticObjects("Jimmy sketch",
+		"You see a man with a table and a sign \n on the sign it says \n Jimmys sketchy stuff \n he seems untrust worthy ...",
+		"",
+		Location{XAxis: 4, YAxis: 4},
+		Stats{Health: 10})
+
 	objectArray := [...]GameObject{rockObject, treeObject, housObject, snakeOilSalesMan}
 
 	return objectArray[:]
 }
 
-func NewStaticObjects(Name, Discription, Interaction string, Location Location, Mana Stats) GameObject {
+func NewStaticObjects(Name, Discription, Interaction string, Location Location, Health Stats) GameObject {
 	basicstaticObejctArc := GameObject{
 		Name:        Name,
 		Discription: Discription,
 		Location:    Location,
 		Interaction: Interaction,
-		Stats:       Mana,
+		Stats:       Health,
 	}
 
 	return basicstaticObejctArc
@@ -192,38 +217,3 @@ func charMovmentBackward(i int) int {
 	i--
 	return i
 }
-
-// type Char struct {
-// 	Stats
-// 	Location
-// 	Name     string
-// 	LastName string
-// 	Age      int
-// 	Wheight  int
-// 	Length   int
-// }
-
-// type Stats struct {
-// 	Health       int
-// 	Mana         int
-// 	Strength     int
-// 	Agility      int
-// 	Intelligence int
-// 	Faith        int
-// }
-
-// type Location struct {
-// 	XAxis int
-// 	YAxis int
-// }
-// type GameObject struct {
-// 	Location
-// 	Name        string
-// 	Discription string
-// 	Interaction string
-// }
-
-// type StaticObjectlocation struct {
-// 	XAxis int
-// 	YAxis int
-// }
