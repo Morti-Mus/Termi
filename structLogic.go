@@ -30,3 +30,11 @@ type GameObject struct {
 	Discription string
 	Interaction string
 }
+
+type itemObject struct {
+	Location
+	Stats
+	Name        string
+	Discription string
+	Interaction string
+}

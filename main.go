@@ -160,6 +160,20 @@ func scanLocation() {
 	}
 }
 
+func LocationChecker() bool { // kolla om detta går att göra bättre med en loop som kollar allt istället?
+	var objectArray []GameObject = CreateStaticObjects()
+	charOne, _ := playerChar()
+
+	locationCharCheck := [2]int{charOne.Location.XAxis, charOne.Location.YAxis}
+	locationObjectCheck := [2]int{objectArray[0].Location.XAxis, objectArray[0].Location.YAxis}
+	locationCombinationCheckPlus := locationCharCheck[0]+2 >= locationObjectCheck[0]
+	locationCombinationCheckMinus := locationCharCheck[0]-2 <= locationObjectCheck[0]
+
+	finalLocationCombinationCheck := locationCombinationCheckPlus && locationCombinationCheckMinus
+	fmt.Println(finalLocationCombinationCheck)
+	return finalLocationCombinationCheck
+}
+
 func CreateStaticObjects() []GameObject {
 	rockObject := NewStaticObjects("rock",
 		"The stone looks aged. \n the sun has bleached the surface. \n you can se a small streak of gold in crack. \n maybe this can be harvested...",
@@ -201,11 +215,11 @@ func NewStaticObjects(Name, Discription, Interaction string, Location Location, 
 
 func ObjectToCharinteract(charOne Char) {
 	var GameObject []GameObject = CreateStaticObjects()
-	testOutput := "Test"
-	fmt.Println("tester")
+	dialogInteraction := "Hello there sir... \n You look like you have some coin to offer for my snake oil"
+
 	fmt.Println(GameObject[3].YAxis)
 	if charOne.Location.XAxis == GameObject[3].XAxis && charOne.Location.YAxis == GameObject[3].YAxis {
-		fmt.Println(testOutput)
+		fmt.Println(dialogInteraction)
 	}
 }
 
