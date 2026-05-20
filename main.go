@@ -7,6 +7,7 @@ import (
 var house = GameObject{}
 
 func main() {
+	CreateStaticItemObject()
 	CreateStaticObjects()
 	// // staticObjects()
 	// // fmt.Println()
@@ -201,8 +202,34 @@ func CreateStaticObjects() []GameObject {
 	return objectArray[:]
 }
 
-func CreateStaticItemObject() map[itemObject]itemObject { // detta måste gå att göra på något bättre sätt en tidigare
-	testItem := itemObject{Name: }
+func CreateStaticItemObject() { // detta måste gå att göra på något bättre sätt en tidigare
+	testItem := map[string]itemObject{}
+
+	swordItem := itemObject{
+		Name:        "Zweihander",
+		Discription: "A big sword from German origin",
+		Interaction: "You have picked upp the sword \n its remarcably heavy.",
+		Location: Location{
+			XAxis: 0,
+			YAxis: 0,
+		},
+	}
+	stickItem := itemObject{
+		Name:        "Stick",
+		Discription: "of truth",
+		Interaction: "This stick radiats unspeakble power",
+		Location: Location{
+			XAxis: 0,
+			YAxis: 0,
+		},
+	}
+
+	testItem["stickItem"] = stickItem
+	testItem["swordItem"] = swordItem
+
+	fmt.Printf("%+v", testItem)
+	fmt.Println(testItem)
+
 }
 
 func NewStaticObjects(Name, Discription, Interaction string, Location Location, Health Stats) GameObject {
