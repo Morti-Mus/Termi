@@ -202,7 +202,7 @@ func CreateStaticObjects() []GameObject {
 	return objectArray[:]
 }
 
-func CreateStaticItemObject() { // detta måste gå att göra på något bättre sätt en tidigare
+func CreateStaticItemObject() map[string]itemObject { // detta måste gå att göra på något bättre sätt en tidigare
 	testItem := map[string]itemObject{}
 
 	swordItem := itemObject{
@@ -224,11 +224,13 @@ func CreateStaticItemObject() { // detta måste gå att göra på något bättre
 		},
 	}
 
-	testItem["stickItem"] = stickItem
-	testItem["swordItem"] = swordItem
+	testItem[stickItem.Name] = stickItem // kolla hur fan detta igentligen funkar.
+	testItem[swordItem.Name] = swordItem
 
-	fmt.Printf("%+v", testItem)
-	fmt.Println(testItem)
+	// fmt.Printf("%+v", testItem)
+	fmt.Printf("swordItem\t%v\n", swordItem.Name)
+	fmt.Println(testItem[swordItem.Name])
+	return testItem
 
 }
 
@@ -242,6 +244,11 @@ func NewStaticObjects(Name, Discription, Interaction string, Location Location, 
 	}
 
 	return basicstaticObejctArc
+}
+
+func itemToCharInteraction(charOne Char) {
+	var itemArray = CreateStaticItemObject()
+	fmt.Println(itemArray["Zweihander"])
 }
 
 func ObjectToCharinteract(charOne Char) {
