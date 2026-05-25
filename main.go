@@ -7,8 +7,8 @@ import (
 var house = GameObject{}
 
 func main() {
-	CreateStaticItemObject()
-	CreateStaticObjects()
+	// CreateStaticItemObject()
+	// CreateStaticObjects()
 	// // staticObjects()
 	// // fmt.Println()
 
@@ -38,11 +38,12 @@ func picker() {
 
 func playerChar() (Char, Char) {
 	char1 := Char{
-		Name:     "John",
-		LastName: "Doe",
-		Age:      30,
-		Wheight:  180,
-		Length:   75,
+		Name:             "John",
+		LastName:         "Doe",
+		Age:              30,
+		Wheight:          180,
+		Length:           75,
+		testItemInteract: true,
 		Stats: Stats{
 			Health:       100,
 			Mana:         50,
@@ -129,6 +130,10 @@ func charMovment() {
 			ObjectToCharinteract(charOne)
 		}
 
+		if inpTest == "inspect" {
+			itemToCharInteraction(charOne)
+		}
+
 		if inpTest == "stop" {
 			break
 		}
@@ -195,7 +200,7 @@ func CreateStaticObjects() []GameObject {
 		"You see a man with a table and a sign \n on the sign it says \n Jimmys sketchy stuff \n he seems untrust worthy ...",
 		"",
 		Location{XAxis: 4, YAxis: 4},
-		Stats{Health: 10})
+		Stats{Health: 30})
 
 	objectArray := [...]GameObject{rockObject, treeObject, housObject, snakeOilSalesMan}
 
@@ -203,12 +208,13 @@ func CreateStaticObjects() []GameObject {
 }
 
 func CreateStaticItemObject() map[string]itemObject { // detta måste gå att göra på något bättre sätt en tidigare
-	testItem := map[string]itemObject{}
+	itemArray := map[string]itemObject{}
 
 	swordItem := itemObject{
 		Name:        "Zweihander",
 		Discription: "A big sword from German origin",
 		Interaction: "You have picked upp the sword \n its remarcably heavy.",
+		Damage:      30,
 		Location: Location{
 			XAxis: 0,
 			YAxis: 0,
@@ -218,19 +224,20 @@ func CreateStaticItemObject() map[string]itemObject { // detta måste gå att g�
 		Name:        "Stick",
 		Discription: "of truth",
 		Interaction: "This stick radiats unspeakble power",
+		Damage:      10,
 		Location: Location{
 			XAxis: 0,
 			YAxis: 0,
 		},
 	}
 
-	testItem[stickItem.Name] = stickItem // kolla hur fan detta igentligen funkar.
-	testItem[swordItem.Name] = swordItem
+	itemArray[stickItem.Name] = stickItem // kolla hur fan detta igentligen funkar.
+	itemArray[swordItem.Name] = swordItem
 
 	// fmt.Printf("%+v", testItem)
-	fmt.Printf("swordItem\t%v\n", swordItem.Name)
-	fmt.Println(testItem[swordItem.Name])
-	return testItem
+	// fmt.Printf("swordItem\t%v\n", swordItem.Name)
+	// fmt.Println(testItem[swordItem.Name])
+	return itemArray
 
 }
 
@@ -246,9 +253,22 @@ func NewStaticObjects(Name, Discription, Interaction string, Location Location, 
 	return basicstaticObejctArc
 }
 
+func attackwithItemChar(charOne Char) {
+	// itemArray := CreateStaticItemObject()
+
+}
+
 func itemToCharInteraction(charOne Char) {
 	var itemArray = CreateStaticItemObject()
-	fmt.Println(itemArray["Zweihander"])
+
+	if charOne.testItemInteract == true &&
+		charOne.Location.XAxis == itemArray["Zweihander"].Location.XAxis &&
+		charOne.Location.YAxis == itemArray["Zweihander"].Location.YAxis {
+		fmt.Println(itemArray["Zweihander"])
+	} else {
+		fmt.Println("well you arent in the correct space")
+	}
+
 }
 
 func ObjectToCharinteract(charOne Char) {

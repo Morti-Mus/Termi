@@ -3,11 +3,13 @@ package main
 type Char struct {
 	Stats
 	Location
-	Name     string
-	LastName string
-	Age      int
-	Wheight  int
-	Length   int
+	Name             string
+	LastName         string
+	Age              int
+	Wheight          int
+	Length           int
+	testItemInteract bool
+	BackPack         []string
 }
 
 type Stats struct {
@@ -37,4 +39,5 @@ type itemObject struct {
 	Name        string
 	Discription string
 	Interaction string
+	Damage      int
 }
