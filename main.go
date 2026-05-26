@@ -7,6 +7,7 @@ import (
 var house = GameObject{}
 
 func main() {
+	attackwithItemChar()
 	// CreateStaticItemObject()
 	// CreateStaticObjects()
 	// // staticObjects()
@@ -131,7 +132,7 @@ func charMovment() {
 		}
 
 		if inpTest == "inspect" {
-			itemToCharInteraction(charOne)
+			ItemCharInspect(charOne)
 		}
 
 		if inpTest == "stop" {
@@ -253,12 +254,44 @@ func NewStaticObjects(Name, Discription, Interaction string, Location Location, 
 	return basicstaticObejctArc
 }
 
-func attackwithItemChar(charOne Char) {
-	// itemArray := CreateStaticItemObject()
+//https://www.geeksforgeeks.org/go-language/delete-elements-in-a-slice-in-golang/ länk till slice remove func
 
+func attackwithItemChar(charOne Char) {
+	staticObjects := CreateStaticObjects()
+
+	var index int = 3
+	elem := staticObjects[index]
+
+	fmt.Println(elem)
+
+	if charOne.XAxis == staticObjects[3].XAxis && charOne.BackPack["Zweihander"].Damage < staticObjects[3].Health {
+		staticObjects = append(staticObjects[:index], staticObjects[index+1:]...)
+	}
 }
 
-func itemToCharInteraction(charOne Char) {
+func itemToBackPack() {
+	charOne, _ := playerChar()
+
+	testItemArray := CreateStaticItemObject()
+	Zweihander := testItemArray["Zweihander"]
+
+	if charOne.XAxis == Zweihander.XAxis {
+		charOne.BackPack[Zweihander.Name] = Zweihander
+
+		fmt.Printf("you have added %v to your backpack", charOne.BackPack["Zweihander"].Name)
+	}
+	fmt.Println(testItemArray["Zweihander"])
+	fmt.Println(charOne)
+	// CreateStaticItemObject()
+}
+
+func teststuff() {
+	testArr := []int{}
+	testArr = append(testArr, 1)
+	fmt.Println(testArr[0])
+}
+
+func ItemCharInspect(charOne Char) {
 	var itemArray = CreateStaticItemObject()
 
 	if charOne.testItemInteract == true &&

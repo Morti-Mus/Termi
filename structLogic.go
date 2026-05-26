@@ -9,7 +9,7 @@ type Char struct {
 	Wheight          int
 	Length           int
 	testItemInteract bool
-	BackPack         []string
+	BackPack         map[string]itemObject
 }
 
 type Stats struct {
