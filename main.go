@@ -7,7 +7,7 @@ import (
 var house = GameObject{}
 
 func main() {
-	attackwithItemChar()
+	// attackwithItemChar()
 	// CreateStaticItemObject()
 	// CreateStaticObjects()
 	// // staticObjects()
@@ -135,6 +135,14 @@ func charMovment() {
 			ItemCharInspect(charOne)
 		}
 
+		if inpTest == "take" {
+			itemToBackPack()
+		}
+
+		if inpTest == "test" {
+			attackwithItemChar(charOne)
+		}
+
 		if inpTest == "stop" {
 			break
 		}
@@ -200,7 +208,7 @@ func CreateStaticObjects() []GameObject {
 	snakeOilSalesMan := NewStaticObjects("Jimmy sketch",
 		"You see a man with a table and a sign \n on the sign it says \n Jimmys sketchy stuff \n he seems untrust worthy ...",
 		"",
-		Location{XAxis: 4, YAxis: 4},
+		Location{XAxis: 0, YAxis: 0},
 		Stats{Health: 30})
 
 	objectArray := [...]GameObject{rockObject, treeObject, housObject, snakeOilSalesMan}
@@ -258,15 +266,29 @@ func NewStaticObjects(Name, Discription, Interaction string, Location Location, 
 
 func attackwithItemChar(charOne Char) {
 	staticObjects := CreateStaticObjects()
+	// itemArray := CreateStaticItemObject()
+
+	// Zweihander := itemArray["Zweihander"]
 
 	var index int = 3
-	elem := staticObjects[index]
 
-	fmt.Println(elem)
+	// fmt.Println("Length befor:", len(staticObjects))
+	// fmt.Println("char XAxis: ", charOne.XAxis)
+	// fmt.Println("Object XAxis:", staticObjects[3].XAxis)
+	// fmt.Printf("\n, \n")
 
-	if charOne.XAxis == staticObjects[3].XAxis && charOne.BackPack["Zweihander"].Damage < staticObjects[3].Health {
+	fmt.Println("Damage:", charOne.BackPack["Zweihander"].Damage)
+	fmt.Println("Health:", staticObjects[3].Health)
+	if charOne.XAxis == staticObjects[3].XAxis && charOne.BackPack["Zweihander"].Damage <= staticObjects[3].Health {
 		staticObjects = append(staticObjects[:index], staticObjects[index+1:]...)
+
+	} else {
+		fmt.Println("error")
+
 	}
+
+	fmt.Println("Length after:", len(staticObjects))
+
 }
 
 func itemToBackPack() {
@@ -314,11 +336,11 @@ func ObjectToCharinteract(charOne Char) {
 	}
 }
 
-func charMovmentForward(i int) int {
-	i++
-	return i
-}
-func charMovmentBackward(i int) int {
-	i--
-	return i
-}
+// func charMovmentForward(i int) int {
+// 	i++
+// 	return i
+// }
+// func charMovmentBackward(i int) int {
+// 	i--
+// 	return i
+// }

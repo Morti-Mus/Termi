@@ -12,6 +12,23 @@ type Char struct {
 	BackPack         map[string]itemObject
 }
 
+// func (c Char) UseItem(itemName string, target Char) {
+// 	selectedItem, has := c.BackPack[itemName]
+// 	if !has {
+// 		return
+// 	}
+// 	selectedItem.UseItemOn(target)
+// }
+
+func (c Char) Move(deltaX, deltaY int) {
+	if c.Agility < 5 {
+		deltaX = min(deltaX, 1)
+		deltaY = min(deltaY, 1)
+	}
+	c.Location.XAxis += deltaX
+	c.Location.YAxis += deltaY
+}
+
 type Stats struct {
 	Health       int
 	Mana         int
